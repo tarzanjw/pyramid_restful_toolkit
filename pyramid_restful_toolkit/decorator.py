@@ -58,14 +58,6 @@ def rest_error_adapter(error_cls):
     return decorator
 
 
-@rest_error_adapter(Exception)
-def _exception_adapter(e):
-    raise ErrorResponse(500, {
-        'exception': e.__class__.__name__,
-        'message': e.message,
-    })
-
-
 try:
     from formencode import Invalid as _FormEncodeInvalid
 except ImportError:
