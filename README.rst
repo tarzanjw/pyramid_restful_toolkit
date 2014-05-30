@@ -19,6 +19,9 @@ That includes:
 
 Sorry, I have no time for this.
 
+  Add *pyramid_restful_toolkit.dev_mode = 1* into dev.ini to ignore the tween
+  that catch all exceptions for debug.
+
 rest_action decorator
 #####################
 

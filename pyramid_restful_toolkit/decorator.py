@@ -11,6 +11,8 @@ def rest_action(view_func):
     def view_wrapper(*args, **kwargs):
         try:
             return view_func(*args, **kwargs)
+        except ErrorResponse, e:
+            raise
         except Exception, e:
             for error_cls, adapter in rest_action.__registered_error_adapters__:
                 if isinstance(e, error_cls):
@@ -78,7 +80,7 @@ def _formencode_invalid_adapter(e):
 
 
 try:
-    from schema import _SchemaError
+    from schema import SchemaError as _SchemaError
 except ImportError:
     class _SchemaError(Exception):
         autos = []

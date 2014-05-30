@@ -7,6 +7,7 @@ class ErrorResponse(Exception):
         self.code = code
         self.errors = errors or {}
         self.data = data or {}
+        self.message = '%d: %s %s' % (code, errors, data)
 
     def response(self, request):
         request.response.status_code = self.code
@@ -76,4 +77,5 @@ def includeme(config):
     """
     config.add_renderer(None, create_pyramid_json_renderer())
     config.add_view(on_error_response_exception, context=ErrorResponse)
-    config.add_tween('pyramid_restful_toolkit.jsonize_uncaught_exception_tween_factory')
+    if not config.registry.settings.get('pyramid_restful_toolkit.dev_mode', False):
+        config.add_tween('pyramid_restful_toolkit.jsonize_uncaught_exception_tween_factory')
