@@ -26,4 +26,5 @@ def includeme(config):
     :type config: pyramid.config.Configurator
     """
     config.add_renderer(None, default_renderer)
+    config.add_renderer('json', default_renderer)
     config.include(__name__ + '.error_handlers')
