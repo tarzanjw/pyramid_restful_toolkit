@@ -9,6 +9,7 @@ That includes:
 
 1. JSON renderer
 2. HTTP Auth Policy (Basic, Digest)
+3. Some utilities to work with SQLAlchemy, CQLEngine
 
 -----
  API
