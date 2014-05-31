@@ -8,30 +8,25 @@ A toolkit for RESTful API development in Pyramid.
 That includes:
 
 1. JSON renderer
-2. rest_action decorator
-3. HTTP Auth Policy (Basic, Digest)
+2. HTTP Auth Policy (Basic, Digest)
 
 -----
  API
 -----
 
-  Under construction.
+To use it, just
 
-Sorry, I have no time for this.
+.. code-block::python
 
-  Add *pyramid_restful_toolkit.dev_mode = 1* into dev.ini to ignore the tween
-  that catch all exceptions for debug.
+    config.include('pyramid_restful_toolkit')
 
-rest_action decorator
-#####################
+This will do those jobs:
 
+    1. Add JSON as default renderer with some default adapters. You can access
+       it through `pyramid_restful_toolkit.default_renderer`
+    2. Add some error handlers for common validators library such as: formencode,
+       colander, schema.
 
-```python
-
-    @rest_action
-    def view_function(request)
-        return {}
-```
 
 HTTP Auth Policy
 ################
