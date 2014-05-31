@@ -27,6 +27,10 @@ This will do those jobs:
     2. Add some error handlers for common validators library such as: formencode,
        colander, schema.
 
+If you want all uncaught exception has return as JSON text. Just include tween
+`pyramid_restful_toolkit.jsonize_uncaught_exception_tween_factory`. This is
+normally used in production.ini.
+
 
 HTTP Auth Policy
 ################
