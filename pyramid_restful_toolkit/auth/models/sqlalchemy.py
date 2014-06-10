@@ -81,3 +81,23 @@ def includeme(config):
 
     config.registry.settings['pyramid_restful_toolkit.auth.get_user_callback'] = \
         'pyramid_restful_toolkit.auth.models.sqlalchemy.get_rest_user'
+
+
+"""Try to automatically declare backend schema
+if pyramid_backend has installed"""
+try:
+    import pyramid_backend
+    import colander
+    from deform import widget
+
+    class RESTfulUserSchema(colander.MappingSchema):
+        username = colander.SchemaNode(colander.String())
+        password = colander.SchemaNode(colander.String())
+        enabled = colander.SchemaNode(colander.Boolean())
+        groups = colander.SchemaNode(colander.String(), missing=colander.null)
+        desc = colander.SchemaNode(colander.String(), missing=colander.null)
+
+    RESTfulUser.__backend_schema_cls__ = RESTfulUserSchema
+
+except ImportError:
+        pass
