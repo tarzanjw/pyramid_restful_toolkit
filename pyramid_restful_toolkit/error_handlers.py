@@ -49,22 +49,22 @@ def includeme(config):
     :type config: pyramid.config.Configurator
     """
     try:
-        import formencode.Invalid
+        import formencode
         config.add_view(on_formencode_invalid, context=formencode.Invalid)
     except ImportError:
         pass
 
     try:
-        import colander.Invalid
+        import colander
         config.add_view(on_colander_invalid, context=colander.Invalid)
     except ImportError:
         pass
 
 
     try:
-        import schema.Error
-        config.add_view(on_schema_error, context=schema.Error)
-    except ImportError:
+        import schema
+        config.add_view(on_schema_error, context=schema.SchemaError)
+    except ImportError as e:
         pass
 
     config.add_view(on_error_response, context=ErrorResponse)
