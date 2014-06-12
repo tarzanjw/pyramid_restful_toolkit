@@ -10,7 +10,7 @@ requires = [
     ]
 
 setup(name='pyramid_restful_toolkit',
-      version='1.0',
+      version='1.0.1',
       description='Some toolkits for RESTful API development in Pyramid.',
       long_description=README,
       classifiers=[

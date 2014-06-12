@@ -1,1 +1,2 @@
 include *.txt *.ini *.cfg *.rst *.ico *.png *.css *.gif *.jpg *.pt *.txt *.mak *.mako *.js *.html *.xml
+recursive-include pyramid_restful_toolkit *.py *.*
