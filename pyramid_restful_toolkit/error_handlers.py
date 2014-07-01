@@ -44,6 +44,14 @@ def on_error_response(context, request):
     return context.response(request)
 
 
+def on_deform_validation_failure(context, request):
+    """
+    :type context: deform.ValidationFailure
+    """
+    request.response.status_code = 400
+    return _make_error_response(400, context.error.asdict())
+
+
 def includeme(config):
     """
     :type config: pyramid.config.Configurator
@@ -60,10 +68,16 @@ def includeme(config):
     except ImportError:
         pass
 
-
     try:
         import schema
         config.add_view(on_schema_error, context=schema.SchemaError)
+    except ImportError as e:
+        pass
+
+    try:
+        import deform
+        config.add_view(on_deform_validation_failure,
+                        context=deform.ValidationFailure)
     except ImportError as e:
         pass
 

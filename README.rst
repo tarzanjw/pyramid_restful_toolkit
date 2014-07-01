@@ -56,3 +56,13 @@ with *development.ini*
 
 Use *pyramid_restful_toolkit.auth.models.sqlalchemy.RESTfulUser* to manage your users. Its table
 name is *rest_user*.
+
+
+-----------
+CHANGES LOG
+-----------
+
+1.0.2
+=====
+
+* Add default error handler support for deform.ValidationFailure
