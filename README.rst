@@ -62,6 +62,11 @@ name is *rest_user*.
 CHANGES LOG
 -----------
 
+1.0.3
+=====
+
+* Add default JSON renderer for cqlengine.columns.ValueQuoter, cqlengine.model.Model
+
 1.0.2
 =====
 
