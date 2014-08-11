@@ -8,6 +8,16 @@ def create_json_renderer():
     """
     Create a JSON renderer most of common datatype
     :rtype : pyramid.renderers.JSON
+
+    >>> from datetime import datetime
+    >>> renderer = create_json_renderer()
+    >>> renderer = renderer(None)
+    >>> renderer('abc', {})
+    '"abc"'
+    >>> renderer({1, 2, 3, 4}, {})
+    '[1, 2, 3, 4]'
+    >>> renderer(datetime.utcfromtimestamp(0), {})
+    '"1970-01-01T00:00:00"'
     """
     r = pyramid.renderers.JSON()
 
