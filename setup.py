@@ -34,7 +34,7 @@ class PyTest(Command):
 
 
 setup(name='pyramid_restful_toolkit',
-      version='1.0.3',
+      version='1.0.3.1',
       description='Some toolkits for RESTful API development in Pyramid.',
       long_description=README,
       classifiers=[

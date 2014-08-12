@@ -24,17 +24,15 @@ def create_json_renderer():
     ...     class TestModel(Model):
     ...         id = columns.Integer(primary_key=True)
     ...         set_col = columns.Set(columns.Integer)
-    ...     m = TestModel(id=1234, set_col={1, 2, 3, 4})
+    ...         date_col = columns.DateTime()
+    ...     m = TestModel(id=1234, set_col={1, 2, 3, 4}, date_col=datetime.utcfromtimestamp(0))
     ... except ImportError:
     ...     class TestModel(dict):
     ...         def _as_dict(self):
     ...             return self
-    ...     m = TestModel(id=1234, set_col={1, 2, 3, 4})
-    >>>
-    >>> renderer(m._as_dict(), {})
-    '{"set_col": [1, 2, 3, 4], "id": 1234}'
+    ...     m = TestModel(id=1234, set_col={1, 2, 3, 4}, date_col=datetime.utcfromtimestamp(0))
     >>> renderer(m, {})
-    '{"set_col": [1, 2, 3, 4], "id": 1234}'
+    '{"set_col": [1, 2, 3, 4], "id": 1234, "date_col": "1970-01-01T00:00:00"}'
     """
     r = pyramid.renderers.JSON()
 
@@ -45,7 +43,9 @@ def create_json_renderer():
         import cqlengine.columns
         import cqlengine.models
         r.add_adapter(cqlengine.models.Model,
-                      lambda obj, request: obj._as_dict())
+                      lambda obj, request:
+                          {cname: obj.__getattribute__(cname)
+                           for cname in obj._columns})
         r.add_adapter(cqlengine.columns.ValueQuoter,
                       lambda obj, request: obj.value)
     except ImportError:
