@@ -19,23 +19,10 @@ test_requires = [
     'schema',
 ]
 
-class PyTest(Command):
-    user_options = []
-    def initialize_options(self):
-        pass
-
-    def finalize_options(self):
-        pass
-
-    def run(self):
-        import sys,subprocess
-        errno = subprocess.call([sys.executable, 'runtests.py'])
-        raise SystemExit(errno)
-
 
 setup(name='pyramid_restful_toolkit',
-      version='1.0.3.1',
-      description='Some toolkits for RESTful API development in Pyramid.',
+      version='1.1.0',
+      description='Some toolkit for RESTful API development in Pyramid.',
       long_description=README,
       classifiers=[
         "Programming Language :: Python",
@@ -53,6 +40,5 @@ setup(name='pyramid_restful_toolkit',
       test_suite='pyramid_restful_toolkit',
       install_requires=requires,
       tests_require=requires + test_requires,
-      cmdclass = {'test': PyTest},
       entry_points='',
       )

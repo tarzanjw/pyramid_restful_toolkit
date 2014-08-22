@@ -31,8 +31,15 @@ def create_json_renderer():
     ...         def _as_dict(self):
     ...             return self
     ...     m = TestModel(id=1234, set_col={1, 2, 3, 4}, date_col=datetime.utcfromtimestamp(0))
-    >>> renderer(m, {})
-    '{"set_col": [1, 2, 3, 4], "id": 1234, "date_col": "1970-01-01T00:00:00"}'
+    >>> d_str = renderer(m, {})
+    >>> import json
+    >>> d = json.loads(d_str)
+    >>> d['set_col']
+    [1, 2, 3, 4]
+    >>> d['id']
+    1234
+    >>> d['date_col'] if isinstance(d['date_col'], str) else d['date_col'].encode('utf-8')
+    '1970-01-01T00:00:00'
     """
     r = pyramid.renderers.JSON()
 

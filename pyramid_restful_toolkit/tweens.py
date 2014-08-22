@@ -12,7 +12,7 @@ def jsonize_uncaught_exception_tween_factory(handler, registry):
         """
         try:
             return handler(request)
-        except BaseException, e:
+        except BaseException as e:
             import json
             from pyramid import response
 

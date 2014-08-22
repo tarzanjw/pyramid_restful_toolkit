@@ -10,9 +10,7 @@ def is_sqlalchemy_column(col):
             isinstance(col, InstrumentedAttribute) \
             and \
             isinstance(col.property, ColumnProperty)
-    except ImportError, e:
-        print e
-        print col
+    except ImportError as e:
         return False
 
 

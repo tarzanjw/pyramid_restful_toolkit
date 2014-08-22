@@ -62,6 +62,12 @@ name is *rest_user*.
 CHANGES LOG
 -----------
 
+1.1.0
+=====
+
+* Add python 3 support
+* Remove auth, move to `pyramid_httpauth (https://github.com/tarzanjw/pyramid_httpauth)`_
+
 1.0.3
 =====
 
