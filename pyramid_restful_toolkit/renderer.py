@@ -1,6 +1,6 @@
 __author__ = 'tarzan'
 
-from datetime import datetime
+from datetime import datetime, date
 import pyramid.renderers
 
 
@@ -18,6 +18,8 @@ def create_json_renderer():
     '[1, 2, 3, 4]'
     >>> renderer(datetime.utcfromtimestamp(0), {})
     '"1970-01-01T00:00:00"'
+    >>> renderer(datetime.utcfromtimestamp(0).date(), {})
+    '"1970-01-01"'
     >>> try:
     ...     from cqlengine.models import Model
     ...     from cqlengine import columns
@@ -45,6 +47,7 @@ def create_json_renderer():
 
     r.add_adapter(set, lambda obj, request: list(obj))
     r.add_adapter(datetime, lambda obj, request: obj.isoformat())
+    r.add_adapter(date, lambda obj, request: obj.isoformat())
 
     try:
         import cqlengine.columns
