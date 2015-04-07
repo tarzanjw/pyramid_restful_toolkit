@@ -21,7 +21,7 @@ test_requires = [
 
 
 setup(name='pyramid_restful_toolkit',
-      version='1.1.0',
+      version='1.1.1',
       description='Some toolkit for RESTful API development in Pyramid.',
       long_description=README,
       classifiers=[

@@ -62,6 +62,11 @@ name is *rest_user*.
 CHANGES LOG
 -----------
 
+1.1.1
+=====
+
+* Add default renderer for datetime.date
+
 1.1.0
 =====
 
